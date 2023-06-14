@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Fluid Dynamics Simulation</title>
+
+    <meta name="viewport" content="width=620" />
+    <style>
+      body {
+        background-color: #ffffff;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        text-align: center;
+      } /* gray background, center everything */
+      p {
+        margin-left: auto;
+        margin-right: auto;
+        width: 600px;
+      } /* keep paragraphs narrow and centered */
+      input {
+        font-size: 115%;
+      } /* make buttons bigger */
+      input[type="range"] {
+        width: 90px;
+      } /* make sliders shorter */
+      select {
+        font-size: 115%;
+      } /* make selectors bigger too */
+      li {
+        text-align: left;
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="theCanvas" width="600" height="240"></canvas>
+    <div>
+      <button id="resetButton" type="button">Reset</button>
+      <button id="stepButton" type="button">Step</button>
+      <button id="startButton" type="button">Pause</button>
+    </div>
+    <div>
+      Flow speed = <span id="speedValue">0.120</span>
+      <input id="speedSlider" type="range" min="0" max="0.12" step="0.005" value="0.1" />
+      &nbsp;&nbsp;Viscosity = <span id="viscValue">0.200</span>
+      <input id="viscositySlider" type="range" min="0.005" max="0.2" step="0.005" value="0.02" />
+    </div>
+    <div style="margin-top: 3px">
+      <select id="mouseSelect">
+        <option value="draw">Draw barriers</option>
+        <option value="erase">Erase barriers</option>
+        <option value="push">Drag fluid</option>
+      </select>
+      <select id="barrierSelect" onchange="placePresetBarrier()">
+        <option>Barrier shapes</option>
+        <option>Short line</option>
+        <option>Long line</option>
+        <option>Diagonal</option>
+        <option>Shallow diagonal</option>
+        <option>Small circle</option>
+        <option>Large circle</option>
+        <option>Line with spoiler</option>
+        <option>Circle with spoiler</option>
+        <option>Right angle</option>
+        <option>Wedge</option>
+        <option>Airfoil</option>
+      </select>
+      <input id="clearButton" type="button" onclick="clearBarriers()" value="Clear barriers" />
+    </div>
+    <div>
+      &nbsp;&nbsp;Contrast:
+      <input id="contrastSlider" type="range" min="-10" max="10" step="1" value="0" onchange="paintCanvas()" />
+    </div>
+    <div>
+      Animation speed:
+      <input id="stepsSlider" type="range" min="1" max="40" step="1" value="20" />
+    </div>
+    <div style="margin-top: 4px">
+      Show:
+      <input id="tracerCheck" type="checkbox" onchange="initTracers()" />Tracers
+      <input id="flowlineCheck" type="checkbox" onchange="paintCanvas()" />Flowlines
+      <input id="forceCheck" type="checkbox" onchange="paintCanvas()" />Force on barriers
+      <input id="sensorCheck" type="checkbox" onchange="paintCanvas()" />Sensor
+    </div>
+
+    <script type="module" src="./dist/index.js"></script>
+  </body>
+</html>
