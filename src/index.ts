@@ -1,8 +1,8 @@
 import { TerminalRenderer } from "./renderer-terminal.js";
 import { Simulation } from "./simulation.js";
 
-const xDim = 100;
-const yDim = 30;
+const xDim = 300;
+const yDim = 120;
 
 const simulation = new Simulation(xDim, yDim, 0.1, 20, 0.02);
 initialBarrier(simulation, yDim);

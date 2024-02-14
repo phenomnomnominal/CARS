@@ -18,8 +18,8 @@ export class TerminalRenderer {
       let result = "";
 
       const contrast = this._contrast;
-      for (let y = 0; y < yDim; y++) {
-        for (let x = 0; x < xDim; x++) {
+      for (let y = 0; y < yDim; y = y + 3) {
+        for (let x = 0; x < xDim; x = x + 3) {
           if (simulation.barrier(x, y)) {
             result += "\x1b[0m ";
             continue;

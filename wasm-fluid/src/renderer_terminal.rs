@@ -20,8 +20,8 @@ impl RendererTerminal {
         print!("\x1B[1;1H");
 
         let mut result = "".to_string();
-        for y in 0..y_dim {
-            for x in 0..x_dim {
+        for y in (0..y_dim).step_by(6) {
+            for x in (0..x_dim).step_by(6) {
                 if simulation.barrier(x, y) {
                     result.push_str("\x1b[0m ");
                 } else {

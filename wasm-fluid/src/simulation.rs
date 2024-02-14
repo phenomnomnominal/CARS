@@ -23,6 +23,8 @@ pub struct Simulation {
 
     // Fluid particle densities, etc. (using 1D arrays for speed):
     // To index into these arrays, use x + y * this._xDim, traversing rows first and then columns.
+
+    // microscopic densities along each lattice direction
     n_0: Vec<f64>,
     n_e: Vec<f64>,
     n_w: Vec<f64>,

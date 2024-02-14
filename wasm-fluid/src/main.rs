@@ -5,9 +5,11 @@ mod simulation;
 use renderer_terminal::RendererTerminal;
 use simulation::Simulation;
 
+use std::time::{Instant};
+
 fn main() {
-    let x_dim = 100;
-    let y_dim = 30;
+    let x_dim = 300;
+    let y_dim = 120;
 
     let mut simulation = Simulation::new(x_dim, y_dim, 0.1, 10, 0.02);
 
@@ -15,11 +17,16 @@ fn main() {
     let renderer = RendererTerminal::new(1.0);
 
     let mut count = 0;
-    while count < 100 {
+    while count < 1000 {
         count += 1;
 
+        let start = Instant::now();
         simulation.simulate();
+        let duration = start.elapsed();
+
         renderer.paint(&simulation, x_dim, y_dim);
+
+        println!("simulate: {:?}", duration);
     }
 }
 
